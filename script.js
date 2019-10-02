@@ -80,3 +80,7 @@ playPattern(pattern)
 const userArr = []
 function bluePush() { userArr.push(0) }
 function redPush() { userArr.push(1) }
+
+function comparePatterns() {
+
+}

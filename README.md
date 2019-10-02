@@ -29,5 +29,8 @@ Comic Book Characters
 Add avatar choices for the player
 Implement multiple games on your site
 
-# MINIMUM VIABLE PRODUCT
+# PROJECT BOARD
+git hub enterprise - https://git.generalassemb.ly/11hkella/project1/projects
+
+
 
