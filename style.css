@@ -1,0 +1,69 @@
+body{
+    min-height: 100vh;
+    background-color: rgb(85, 85, 85);
+}
+.game-board{
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+/* BUTTONS */
+.one{
+    background-color: #c1ecfa98;
+}
+.glow-blue{
+    -webkit-animation: bluePulse 1s 1;
+}
+.two{
+    background-color: #ff4625a1;
+}
+.glow-red{
+     -webkit-animation: redPulse 1s 1;
+}
+.game-board button{
+    border: 2px solid rgba(20, 20, 20, 0.925);
+    border-radius: 99%;
+    width: 150px;
+    height: 150px;
+    margin: 0 30px;
+    transition: all 0.2s ease-in-out;
+    font-size: 3em;
+    color: rgb(241, 241, 241)
+     
+}
+button {
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+button:focus {
+    outline: none;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.98);
+    outline: none;
+}
+
+/* Animations */
+@keyframes bluePulse{
+from {background-color: #9fe2f8f3; -webkit-box-shadow: 0 0 9px #8ce2ffaf; color: #f8f7f7; }
+8% {background-color: #82e0ff; -webkit-box-shadow: 0 0 18px #c6edfabd; color: #fff; }
+to {background-color: #c1ecfa98; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #f8f7f7; }
+}
+
+@keyframes redPulse{
+from {background-color: #ff4625be; -webkit-box-shadow: 0 0 9px #ff7c65a1; color: #f8f7f7; }
+8% {background-color: #ff4625; -webkit-box-shadow: 0 0 18px #ff856fcc; color: #fff; }
+to {background-color: #ff4625a1; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f8f7f7; }
+}
