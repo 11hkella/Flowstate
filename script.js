@@ -5,7 +5,12 @@ const buttonRed = document.getElementById("red")
 
 //      CONTROLLER
 //      All buttons with keyCode controller
-document.querySelector("body").addEventListener("keydown", (e) => {
+document.querySelector("body").addEventListener("keydown", controller)
+let playerDisbled = true
+function controller(e) {
+    if (playerDisbled) {
+        return
+    }
     if (e.keyCode === 70) {
         console.log('add anime')
         buttonBlue.classList.add("glow-blue")
@@ -20,33 +25,37 @@ document.querySelector("body").addEventListener("keydown", (e) => {
         console.log(userArr)
         comparePatterns()
     }
-})
+}
+
 //      Click functionality
 //blue button
-buttonBlue.addEventListener("click", (e) => {
-    console.log('click')
-    console.log('add anime')
-    buttonBlue.classList.add("glow-blue")
+// buttonBlue.addEventListener("click", (e) => {
+//     console.log('click')
+//     console.log('add anime')
+//     buttonBlue.classList.add("glow-blue")
 
-})
+// })
+
+//red button
+// buttonRed.addEventListener("click", (e) => {
+//     console.log('click')
+//     console.log('add ani')
+//     buttonRed.classList.add("glow-red")
+
+// })
+
+
+//      ANIMATION
+// add event listeners to remove class after animation ends
 buttonBlue.addEventListener("webkitAnimationEnd", () => {
     console.log('remove anime')
     buttonBlue.classList.remove("glow-blue")
-});
-
-//red button
-buttonRed.addEventListener("click", (e) => {
-    console.log('click')
-    console.log('add ani')
-    buttonRed.classList.add("glow-red")
-
 })
 buttonRed.addEventListener("webkitAnimationEnd", () => {
     console.log('remove anime')
     buttonRed.classList.remove("glow-red")
-});
+})
 
-//      ANIMATION
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red"]
 
@@ -58,7 +67,11 @@ function playPattern() {
         console.log(buttonColor)
         document.getElementById(buttonColor).classList.add(animationIndex[pattern[i]])
         i++
-        if (i >= pattern.length) { clearInterval(play) }
+        if (i >= pattern.length) {
+            clearInterval(play)
+            console.log("controller on")
+            playerDisbled = false //reengauge controller functionality
+        }
     }, 1050)
 }
 
@@ -111,8 +124,12 @@ function lose() {
 
 //Game loop
 function roundStart() {
+    //disengauge controller functionality
+    console.log('controller off')
+    playerDisbled = true
+    //
     console.log("round start")
     createPattern()
-    playPattern()
+    playPattern() //reengauge controller at end of this funtion
 }
 roundStart()
