@@ -107,8 +107,10 @@ function playPattern() {
         i++
         if (i >= pattern.length) {
             clearInterval(play)
-            console.log("controller on")
-            playerDisbled = false //reengauge controller functionality
+            setTimeout(function () {
+                console.log("controller on")
+                playerDisbled = false //reengauge controller functionality
+            }, 1000)
         }
     }, 1050)
 }
