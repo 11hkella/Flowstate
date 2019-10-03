@@ -3,8 +3,7 @@ console.log("here here!")
 const buttonBlue = document.getElementById("blue")
 const buttonRed = document.getElementById("red")
 
-//      ANIMATION
-
+//      CONTROLLER
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", (e) => {
     if (e.keyCode === 70) {
@@ -47,17 +46,8 @@ buttonRed.addEventListener("webkitAnimationEnd", () => {
     buttonRed.classList.remove("glow-red")
 });
 
-// GAME LOGIC
-
-//randomly generated array 
-let patternCount = 1
-const randomButton = () => { return Math.floor(Math.random() * 2) }
-let pattern = []
-const addMove = () => { pattern.push(randomButton()) }
-for (let i = 0; i < patternCount; i++) { addMove() }
-
+//      ANIMATION
 // Play pattern animation
-
 const animationIndex = ["glow-blue", "glow-red"]
 
 function playPattern(arr) {
@@ -72,7 +62,15 @@ function playPattern(arr) {
     }, 1050)
 }
 
-playPattern(pattern)
+// GAME LOGIC
+//randomly generated array 
+let patternCount = 1
+const pattern = []
+function createPattern() {
+    for (let i = 0; i < patternCount; i++) {
+        pattern.push(Math.floor(Math.random() * 2))
+    }
+}
 
 // Create array from user inputs
 const userArr = []
@@ -94,14 +92,17 @@ function comparePatterns() {
     }
     else {
         console.log("correct")
+        check++
     }
-    check++
 }
 // create win state
 function win() {
-
+    pattern = []
+    patternCount++
 }
 // create lose state
 function lose() {
+    pattern = []
+    patternCount = 1
 
 }
