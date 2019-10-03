@@ -3,26 +3,28 @@ body{
     background-color: rgb(85, 85, 85);
 }
 .game-board{
-    height: 600px;
+    height: 500px;
+    max-width: 800px;
+    padding: 50px;
+    margin: 0 auto;
+}
+.game-board .row1{
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
+    padding: 20px 0;
+}
+.game-board .row2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px 0;
+    user-select: none;
 }
 
 /* BUTTONS */
-.one{
-    background-color: #c1ecfa98;
-}
-.glow-blue{
-    -webkit-animation: bluePulse .7s 1;
-}
-.two{
-    background-color: #ff4625a1;
-}
-.glow-red{
-     -webkit-animation: redPulse .7s 1;
-}
+       /* general button styling */
 .game-board button{
     border: 2px solid rgba(20, 20, 20, 0.925);
     border-radius: 99%;
@@ -31,19 +33,14 @@ body{
     margin: 0 30px;
     transition: all 0.2s ease-in-out;
     font-size: 3em;
-    color: rgb(241, 241, 241)
-     
-}
-button {
+    color: rgb(241, 241, 241);
     padding: 1rem 2rem;
-    margin: 0;
     text-decoration: none;
-    color: #ffffff;
     font-family: sans-serif;
     cursor: pointer;
     text-align: center;
     -webkit-appearance: none;
-    -moz-appearance: none;
+    -moz-appearance: none;    
 }
 button:focus {
     outline: none;
@@ -54,8 +51,36 @@ button:active {
     transform: scale(0.98);
     outline: none;
 }
+.row2 .space{
+    width: 270px;
+    height: 135px;
+}
 
-/* Animations */
+        /* color */
+.f{ background-color: #c1ecfa98; }
+.j{ background-color: #ff4625a1; }
+.c{ background-color: #ffdd4391; }
+.space{ background-color: #860a9c8f; }
+.m{ background-color: #34860578; }
+
+        /* animation calls */
+.glow-blue{
+    -webkit-animation: bluePulse .7s 1;
+}
+.glow-red{
+     -webkit-animation: redPulse .7s 1;
+}
+.glow-yellow{
+     -webkit-animation: yellowPulse .7s 1;
+}
+.glow-purple{
+     -webkit-animation: purplePulse .7s 1;
+}
+.glow-green{
+     -webkit-animation: greenPulse .7s 1;
+}
+
+        /* Animations details*/
 @keyframes bluePulse{
 from {background-color: #9fe2f8f3; -webkit-box-shadow: 0 0 9px #8ce2ffaf; color: #f8f7f7; }
 8% {background-color: #82e0ff; -webkit-box-shadow: 0 0 18px #c6edfabd; color: #fff; }
@@ -66,4 +91,22 @@ to {background-color: #c1ecfa98; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #
 from {background-color: #ff4625be; -webkit-box-shadow: 0 0 9px #ff7c65a1; color: #f8f7f7; }
 8% {background-color: #ff4625; -webkit-box-shadow: 0 0 18px #ff856fcc; color: #fff; }
 to {background-color: #ff4625a1; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f8f7f7; }
+}
+
+@keyframes yellowPulse{
+from {background-color: #ffdd43b4; -webkit-box-shadow: 0 0 9px #ecc72485; color: #f8f7f7; }
+8% {background-color: #ffdd43; -webkit-box-shadow: 0 0 18px #ecc724a9; color: #fff; }
+to {background-color: #ffdd4391; -webkit-box-shadow: 0 0 1px #ecc72473; color: #f8f7f7; }
+}
+
+@keyframes purplePulse{
+from {background-color: #860a9cab; -webkit-box-shadow: 0 0 9px #680879a1; color: #f8f7f7; }
+8% {background-color: #860a9c; -webkit-box-shadow: 0 0 18px #68087998; color: #fff; }
+to {background-color: #860a9c8f; -webkit-box-shadow: 0 0 1px #6808798f; color: #f8f7f7; }
+}
+
+@keyframes greenPulse{
+from {background-color: #348605a6; -webkit-box-shadow: 0 0 9px #42a00c80; color: #f8f7f7; }
+8% {background-color: #348605; -webkit-box-shadow: 0 0 18px #42a00c8a; color: #fff; }
+to {background-color: #34860578; -webkit-box-shadow: 0 0 1px #42a00c57; color: #f8f7f7; }
 }

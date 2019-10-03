@@ -2,6 +2,9 @@ console.log("here here!")
 //      POINTERS
 const buttonBlue = document.getElementById("blue")
 const buttonRed = document.getElementById("red")
+const buttonYellow = document.getElementById("yellow")
+const buttonPurple = document.getElementById("purple")
+const buttonGreen = document.getElementById("green")
 
 //      CONTROLLER
 //      All buttons with keyCode controller
