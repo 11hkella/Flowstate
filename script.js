@@ -12,13 +12,19 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) {
+        //remove then add class animation. THIS IS JS MAGIC
+        buttonBlue.classList.remove("glow-blue")
+        void buttonBlue.offsetWidth
         console.log('add anime')
         buttonBlue.classList.add("glow-blue")
+        //
         bluePush()
         console.log(userArr)
         comparePatterns()
     }
     if (e.keyCode === 74) {
+        buttonRed.classList.remove("glow-red")
+        void buttonRed.offsetWidth
         console.log('add ani')
         buttonRed.classList.add("glow-red")
         redPush()
@@ -45,7 +51,7 @@ function controller(e) {
 // })
 
 
-//      ANIMATION
+//      PATTERN ANIMATION
 // add event listeners to remove class after animation ends
 buttonBlue.addEventListener("webkitAnimationEnd", () => {
     console.log('remove anime')
