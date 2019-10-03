@@ -113,7 +113,7 @@ function playPattern() {
                 playerDisbled = false //reengauge controller functionality
             }, 1000)
         }
-    }, 1050)
+    }, 850)
 }
 
 // GAME LOGIC
