@@ -50,9 +50,11 @@ buttonRed.addEventListener("webkitAnimationEnd", () => {
 // GAME LOGIC
 
 //randomly generated array 
+let patternCount = 1
 const randomButton = () => { return Math.floor(Math.random() * 2) }
-let pattern = [randomButton()]
+let pattern = []
 const addMove = () => { pattern.push(randomButton()) }
+for (let i = 0; i < patternCount; i++) { addMove() }
 
 // Play pattern animation
 
@@ -83,14 +85,23 @@ function comparePatterns() {
     if (userArr[check] !== pattern[check]) {
         console.log("You Lose")
         check = 0
+        lose()
     }
     else if (userArr.length === pattern.length) {
         console.log("You Win!... this round")
         check = 0
-
+        win()
     }
     else {
         console.log("correct")
     }
     check++
+}
+// create win state
+function win() {
+
+}
+// create lose state
+function lose() {
+
 }
