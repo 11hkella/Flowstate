@@ -15,13 +15,13 @@ body{
     background-color: #c1ecfa98;
 }
 .glow-blue{
-    -webkit-animation: bluePulse 1s 1;
+    -webkit-animation: bluePulse .7s 1;
 }
 .two{
     background-color: #ff4625a1;
 }
 .glow-red{
-     -webkit-animation: redPulse 1s 1;
+     -webkit-animation: redPulse .7s 1;
 }
 .game-board button{
     border: 2px solid rgba(20, 20, 20, 0.925);

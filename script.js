@@ -12,12 +12,14 @@ document.querySelector("body").addEventListener("keydown", (e) => {
         buttonBlue.classList.add("glow-blue")
         bluePush()
         console.log(userArr)
+        comparePatterns()
     }
     if (e.keyCode === 74) {
         console.log('add ani')
         buttonRed.classList.add("glow-red")
         redPush()
         console.log(userArr)
+        comparePatterns()
     }
 })
 //      Click functionality
@@ -52,12 +54,6 @@ const randomButton = () => { return Math.floor(Math.random() * 2) }
 let pattern = [randomButton()]
 const addMove = () => { pattern.push(randomButton()) }
 
-console.log(pattern)
-addMove()
-console.log(pattern)
-addMove()
-console.log(pattern)
-
 // Play pattern animation
 
 const animationIndex = ["glow-blue", "glow-red"]
@@ -81,6 +77,20 @@ const userArr = []
 function bluePush() { userArr.push(0) }
 function redPush() { userArr.push(1) }
 
+// compare the pattern with the user input
+let check = 0
 function comparePatterns() {
+    if (userArr[check] !== pattern[check]) {
+        console.log("You Lose")
+        check = 0
+    }
+    else if (userArr.length === pattern.length) {
+        console.log("You Win!... this round")
+        check = 0
 
+    }
+    else {
+        console.log("correct")
+    }
+    check++
 }
