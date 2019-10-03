@@ -50,22 +50,22 @@ buttonRed.addEventListener("webkitAnimationEnd", () => {
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red"]
 
-function playPattern(arr) {
+function playPattern() {
     let i = 0
     let buttonColor
     let play = setInterval(() => {
-        buttonColor = animationIndex[arr[i]].slice(5)
+        buttonColor = animationIndex[pattern[i]].slice(5)
         console.log(buttonColor)
-        document.getElementById(buttonColor).classList.add(animationIndex[arr[i]])
+        document.getElementById(buttonColor).classList.add(animationIndex[pattern[i]])
         i++
-        if (i >= arr.length) { clearInterval(play) }
+        if (i >= pattern.length) { clearInterval(play) }
     }, 1050)
 }
 
 // GAME LOGIC
 //randomly generated array 
 let patternCount = 1
-const pattern = []
+let pattern = []
 function createPattern() {
     for (let i = 0; i < patternCount; i++) {
         pattern.push(Math.floor(Math.random() * 2))
@@ -73,7 +73,7 @@ function createPattern() {
 }
 
 // Create array from user inputs
-const userArr = []
+let userArr = []
 function bluePush() { userArr.push(0) }
 function redPush() { userArr.push(1) }
 
@@ -98,11 +98,21 @@ function comparePatterns() {
 // create win state
 function win() {
     pattern = []
+    userArr = []
     patternCount++
+    roundStart()
 }
 // create lose state
 function lose() {
     pattern = []
+    userArr = []
     patternCount = 1
-
 }
+
+//Game loop
+function roundStart() {
+    console.log("round start")
+    createPattern()
+    playPattern()
+}
+roundStart()
