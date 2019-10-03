@@ -14,25 +14,42 @@ function controller(e) {
     if (playerDisbled) {
         return
     }
-    if (e.keyCode === 70) {
+    else if (e.keyCode === 70) { //f blue index:0
         //remove then add class animation. THIS IS JS MAGIC
         buttonBlue.classList.remove("glow-blue")
         void buttonBlue.offsetWidth
         console.log('add anime')
         buttonBlue.classList.add("glow-blue")
         //
-        bluePush()
-        console.log(userArr)
-        comparePatterns()
+        push(0)
     }
-    if (e.keyCode === 74) {
+    else if (e.keyCode === 74) { // j red index:1
         buttonRed.classList.remove("glow-red")
         void buttonRed.offsetWidth
         console.log('add ani')
         buttonRed.classList.add("glow-red")
-        redPush()
-        console.log(userArr)
-        comparePatterns()
+        push(1)
+    }
+    else if (e.keyCode === 67) { // c yellow index:2
+        buttonYellow.classList.remove("glow-yellow")
+        void buttonYellow.offsetWidth
+        console.log('add ani')
+        buttonYellow.classList.add("glow-yellow")
+        push(2)
+    }
+    else if (e.keyCode === 32) { // space purple index:3
+        buttonPurple.classList.remove("glow-purple")
+        void buttonPurple.offsetWidth
+        console.log('add ani')
+        buttonPurple.classList.add("glow-purple")
+        push(3)
+    }
+    else if (e.keyCode === 77) { // m green index:4
+        buttonGreen.classList.remove("glow-green")
+        void buttonGreen.offsetWidth
+        console.log('add ani')
+        buttonGreen.classList.add("glow-green")
+        push(4)
     }
 }
 
@@ -64,9 +81,21 @@ buttonRed.addEventListener("webkitAnimationEnd", () => {
     console.log('remove anime')
     buttonRed.classList.remove("glow-red")
 })
+buttonYellow.addEventListener("webkitAnimationEnd", () => {
+    console.log('remove anime')
+    buttonYellow.classList.remove("glow-yellow")
+})
+buttonPurple.addEventListener("webkitAnimationEnd", () => {
+    console.log('remove anime')
+    buttonPurple.classList.remove("glow-purple")
+})
+buttonGreen.addEventListener("webkitAnimationEnd", () => {
+    console.log('remove anime')
+    buttonGreen.classList.remove("glow-green")
+})
 
 // Play pattern animation
-const animationIndex = ["glow-blue", "glow-red"]
+const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
 
 function playPattern() {
     let i = 0
@@ -90,14 +119,22 @@ let patternCount = 1
 let pattern = []
 function createPattern() {
     for (let i = 0; i < patternCount; i++) {
-        pattern.push(Math.floor(Math.random() * 2))
+        pattern.push(Math.floor(Math.random() * 5))
     }
 }
 
 // Create array from user inputs
 let userArr = []
-function bluePush() { userArr.push(0) }
-function redPush() { userArr.push(1) }
+function push(iButton) {
+    userArr.push(iButton)
+    console.log(userArr)
+    comparePatterns()
+}
+// function bluePush() { userArr.push(0) }
+// function redPush() { userArr.push(1) }
+// function redPush() { userArr.push(1) }
+// function redPush() { userArr.push(1) }
+// function redPush() { userArr.push(1) }
 
 // compare the pattern with the user input
 let check = 0
