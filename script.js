@@ -5,6 +5,7 @@ const buttonRed = document.getElementById("red")
 const buttonYellow = document.getElementById("yellow")
 const buttonPurple = document.getElementById("purple")
 const buttonGreen = document.getElementById("green")
+const playGame = document.getElementById("playGame")
 
 //      CONTROLLER
 //      All buttons with keyCode controller
@@ -158,16 +159,24 @@ function comparePatterns() {
 }
 // create win state
 function win() {
-    pattern = []
-    userArr = []
-    patternCount++
-    roundStart()
+    if (false) { // create a challenge boolean to switch between challenge 
+        pattern = []
+        userArr = []
+        patternCount++
+        roundStart()
+    }
+    else {
+        userArr = []
+        roundStart()
+    }
 }
 // create lose state
 function lose() {
     pattern = []
     userArr = []
     patternCount = 1
+    playGame.style.cursor = "default"
+    playing = false
 }
 
 //Game loop
@@ -180,4 +189,18 @@ function roundStart() {
     createPattern()
     playPattern() //reengauge controller at end of this funtion
 }
-roundStart()
+
+//play game button
+let playing = false
+playGame.addEventListener("click", () => {
+    if (playing) {
+        console.log("already playing")
+        return
+    }
+    else {
+        console.log("begin game!")
+        roundStart()
+        playGame.style.cursor = "default"
+        playing = true
+    }
+})
