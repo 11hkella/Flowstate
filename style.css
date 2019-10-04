@@ -31,6 +31,18 @@ body{
     display: inline-block;
     cursor: pointer;
 }
+.result-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 40px 0 0 0;
+    height: 50px
+}
+.result{
+    display: none;
+    text-align: center;
+    font-size: 1.5rem;
+}
 
 /* BUTTONS */
        /* general button styling */

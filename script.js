@@ -6,6 +6,7 @@ const buttonYellow = document.getElementById("yellow")
 const buttonPurple = document.getElementById("purple")
 const buttonGreen = document.getElementById("green")
 const playGame = document.getElementById("playGame")
+const messageBox = document.getElementById("messageBox")
 
 //      CONTROLLER
 //      All buttons with keyCode controller
@@ -54,24 +55,6 @@ function controller(e) {
     }
 }
 
-//      Click functionality
-//blue button
-// buttonBlue.addEventListener("click", (e) => {
-//     console.log('click')
-//     console.log('add anime')
-//     buttonBlue.classList.add("glow-blue")
-
-// })
-
-//red button
-// buttonRed.addEventListener("click", (e) => {
-//     console.log('click')
-//     console.log('add ani')
-//     buttonRed.classList.add("glow-red")
-
-// })
-
-
 //      PATTERN ANIMATION
 // add event listeners to remove class after animation ends
 buttonBlue.addEventListener("webkitAnimationEnd", () => {
@@ -100,18 +83,22 @@ const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "
 
 function playPattern() {
     let i = 0
-    let buttonColor
+    let button;
+    messageToPlayer("GO!", 300)
     let play = setInterval(() => {
-        buttonColor = animationIndex[pattern[i]].slice(5)
-        console.log(buttonColor)
-        document.getElementById(buttonColor).classList.add(animationIndex[pattern[i]])
+        button = document.getElementById(animationIndex[pattern[i]].slice(5))
+        console.log(button)
+        button.classList.remove(animationIndex[pattern[i]])
+        void button.offsetWidth
+        console.log('add ani')
+        buttonGreen.classList.add(animationIndex[pattern[i]])
         i++
         if (i >= pattern.length) {
             clearInterval(play)
             setTimeout(function () {
                 console.log("controller on")
                 playerDisbled = false //reengauge controller functionality
-            }, 1000)
+            }, 800)
         }
     }, 850)
 }
@@ -133,11 +120,6 @@ function push(iButton) {
     console.log(userArr)
     comparePatterns()
 }
-// function bluePush() { userArr.push(0) }
-// function redPush() { userArr.push(1) }
-// function redPush() { userArr.push(1) }
-// function redPush() { userArr.push(1) }
-// function redPush() { userArr.push(1) }
 
 // compare the pattern with the user input
 let check = 0
@@ -163,15 +145,18 @@ function win() {
         pattern = []
         userArr = []
         patternCount++
+        messageToPlayer("SUCCESS")
         roundStart()
     }
     else {
         userArr = []
+        messageToPlayer("SUCCESS")
         roundStart()
     }
 }
 // create lose state
 function lose() {
+    messageToPlayer("YOU LOSE", 10000)
     pattern = []
     userArr = []
     patternCount = 1
@@ -179,15 +164,27 @@ function lose() {
     playing = false
 }
 
+// create a way to inform the player of game info
+function messageToPlayer(message, duration = 1000) {
+    messageBox.textContent = message
+    console.log(messageBox.textContent)
+    messageBox.style.display = "inline-block"
+    setTimeout(() => {
+        console.log(message)
+        messageBox.style.display = "none"
+    }, duration)
+}
+
 //Game loop
 function roundStart() {
     //disengauge controller functionality
     console.log('controller off')
     playerDisbled = true
-    //
-    console.log("round start")
-    createPattern()
-    playPattern() //reengauge controller at end of this funtion
+    setTimeout(() => {
+        console.log("round start")
+        createPattern()
+        playPattern() //reengauge controller at end of this funtion
+    }, 500)
 }
 
 //play game button
@@ -198,7 +195,7 @@ playGame.addEventListener("click", () => {
         return
     }
     else {
-        console.log("begin game!")
+        messageToPlayer("READY?")
         roundStart()
         playGame.style.cursor = "default"
         playing = true
