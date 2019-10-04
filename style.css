@@ -1,6 +1,6 @@
 body{
     min-height: 100vh;
-    background-color: rgb(54, 54, 54);
+    background-color: rgb(18, 18, 18);
 }
 .game-board{
     max-width: 800px;
@@ -25,6 +25,9 @@ body{
     display: flex;
     justify-content: center;
 }
+h2{
+    color: rgb(216, 212, 212);
+}
 .pg-container h2{
     text-align: center;
     font-size: 3.5rem;
@@ -47,14 +50,14 @@ body{
 /* BUTTONS */
        /* general button styling */
 .game-board button{
-    border: 2px solid rgba(20, 20, 20, 0.925);
+    border: 1px solid rgba(20, 20, 20, 0.925);
     border-radius: 99%;
     width: 150px;
     height: 150px;
     margin: 0 30px;
     transition: all 0.2s ease-in-out;
     font-size: 3em;
-    color: rgb(241, 241, 241);
+    color: #f1f1f169;
     padding: 1rem 2rem;
     text-decoration: none;
     font-family: sans-serif;
@@ -78,11 +81,11 @@ button:active {
 }
 
         /* color */
-.f{ background-color: #c1ecfa70; }
-.j{ background-color: #ff462570; }
-.c{ background-color: #ffdd4367; }
-.space{ background-color: #860a9c67; }
-.m{ background-color: #3486054d; }
+.f{ background-color: #c1ecfa38; }
+.j{ background-color: #ff46253c; }
+.c{ background-color: #ffdd4331; }
+.space{ background-color: #860a9c2d; }
+.m{ background-color: #34860531; }
 
         /* animation calls */
 .glow-blue{
@@ -105,29 +108,29 @@ button:active {
 @keyframes bluePulse{
 from {background-color: #9fe2f8f3; -webkit-box-shadow: 0 0 9px #8ce2ffaf; color: #f8f7f7; }
 8% {background-color: #82e0ff; -webkit-box-shadow: 0 0 18px #c6edfabd; color: #fff; }
-to {background-color: #c1ecfa70; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #f8f7f7; }
+to {background-color: #c1ecfa38; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #f1f1f169; }
 }
 
 @keyframes redPulse{
 from {background-color: #ff4625be; -webkit-box-shadow: 0 0 9px #ff7c65a1; color: #f8f7f7; }
 8% {background-color: #ff4625; -webkit-box-shadow: 0 0 18px #ff856fcc; color: #fff; }
-to {background-color: #ff462570; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f8f7f7; }
+to {background-color: #ff46253c; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f1f1f169; }
 }
 
 @keyframes yellowPulse{
 from {background-color: #ffdd43b4; -webkit-box-shadow: 0 0 9px #ecc72485; color: #f8f7f7; }
 8% {background-color: #ffdd43; -webkit-box-shadow: 0 0 18px #ecc724a9; color: #fff; }
-to {background-color: #ffdd4367; -webkit-box-shadow: 0 0 1px #ecc72473; color: #f8f7f7; }
+to {background-color: #ffdd4331; -webkit-box-shadow: 0 0 1px #ecc72473; color: #f1f1f169; }
 }
 
 @keyframes purplePulse{
-from {background-color: #910da8ab; -webkit-box-shadow: 0 0 9px #be0fdda1; color: #f8f7f7; }
-8% {background-color: #b10dce; -webkit-box-shadow: 0 0 18px #d614f898; color: #fff; }
-to {background-color: #860a9c67; -webkit-box-shadow: 0 0 1px #b913d68f; color: #f8f7f7; }
+from {background-color: #9c0db6ab; -webkit-box-shadow: 0 0 9px #be0fdda1; color: #f8f7f7; }
+8% {background-color: #be0fdd; -webkit-box-shadow: 0 0 18px #d614f898; color: #fff; }
+to {background-color: #860a9c2d; -webkit-box-shadow: 0 0 1px #b913d68f; color: #f1f1f169; }
 }
 
 @keyframes greenPulse{
-from {background-color: #3a9605a6; -webkit-box-shadow: 0 0 9px #66e01f80; color: #f8f7f7; }
-8% {background-color: #3a9406; -webkit-box-shadow: 0 0 18px #59db0d8a; color: #fff; }
-to {background-color: #3486054d; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #f8f7f7; }
+from {background-color: #44aa09a6; -webkit-box-shadow: 0 0 9px #66e01f80; color: #f8f7f7; }
+8% {background-color: #47b309; -webkit-box-shadow: 0 0 18px #59db0d8a; color: #fff; }
+to {background-color: #34860531; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #f1f1f169; }
 }

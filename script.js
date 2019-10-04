@@ -17,11 +17,6 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        //remove then add class animation. THIS IS JS MAGIC
-        // buttonBlue.classList.remove("glow-blue")
-        // void buttonBlue.offsetWidth
-        // console.log('add anime')
-        // buttonBlue.classList.add("glow-blue")
         controllerAnimation("glow-blue")
         push(0)
     }
@@ -59,29 +54,6 @@ function push(iButton) {
     console.log(userArr)
     comparePatterns()
 }
-
-//      PATTERN ANIMATION
-// add event listeners to remove class after animation ends
-// buttonBlue.addEventListener("webkitAnimationEnd", () => {
-//     console.log('remove anime')
-//     buttonBlue.classList.remove("glow-blue")
-// })
-// buttonRed.addEventListener("webkitAnimationEnd", () => {
-//     console.log('remove anime')
-//     buttonRed.classList.remove("glow-red")
-// })
-// buttonYellow.addEventListener("webkitAnimationEnd", () => {
-//     console.log('remove anime')
-//     buttonYellow.classList.remove("glow-yellow")
-// })
-// buttonPurple.addEventListener("webkitAnimationEnd", () => {
-//     console.log('remove anime')
-//     buttonPurple.classList.remove("glow-purple")
-// })
-// buttonGreen.addEventListener("webkitAnimationEnd", () => {
-//     console.log('remove anime')
-//     buttonGreen.classList.remove("glow-green")
-// })
 
 //      SIMON COMPUTER
 //randomly generated array 
@@ -171,7 +143,7 @@ function messageToPlayer(message, duration = 1000) {
 }
 
 //round inititor and sequencer
-let challenge = true
+let challenge = false
 function roundStart() {
     //disengauge controller functionality
     console.log('controller off')
