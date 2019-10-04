@@ -8,7 +8,7 @@ const buttonGreen = document.getElementById("green")
 const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
 
-//      CONTROLLER
+//      USER
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
 let playerDisbled = true
@@ -16,101 +16,40 @@ function controller(e) {
     if (playerDisbled) {
         return
     }
-    else if (e.keyCode === 70) { //f blue index:0
+    if (e.keyCode === 70) { //f blue index:0
         //remove then add class animation. THIS IS JS MAGIC
-        buttonBlue.classList.remove("glow-blue")
-        void buttonBlue.offsetWidth
-        console.log('add anime')
-        buttonBlue.classList.add("glow-blue")
-        //
+        // buttonBlue.classList.remove("glow-blue")
+        // void buttonBlue.offsetWidth
+        // console.log('add anime')
+        // buttonBlue.classList.add("glow-blue")
+        controllerAnimation("glow-blue")
         push(0)
     }
-    else if (e.keyCode === 74) { // j red index:1
-        buttonRed.classList.remove("glow-red")
-        void buttonRed.offsetWidth
-        console.log('add ani')
-        buttonRed.classList.add("glow-red")
+    if (e.keyCode === 74) { // j red index:1
+        controllerAnimation("glow-red")
         push(1)
     }
-    else if (e.keyCode === 67) { // c yellow index:2
-        buttonYellow.classList.remove("glow-yellow")
-        void buttonYellow.offsetWidth
-        console.log('add ani')
-        buttonYellow.classList.add("glow-yellow")
+    if (e.keyCode === 67) { // c yellow index:2
+        controllerAnimation("glow-yellow")
         push(2)
     }
-    else if (e.keyCode === 32) { // space purple index:3
-        buttonPurple.classList.remove("glow-purple")
-        void buttonPurple.offsetWidth
-        console.log('add ani')
-        buttonPurple.classList.add("glow-purple")
+    if (e.keyCode === 32) { // space purple index:3
+        controllerAnimation("glow-purple")
         push(3)
     }
-    else if (e.keyCode === 77) { // m green index:4
-        buttonGreen.classList.remove("glow-green")
-        void buttonGreen.offsetWidth
-        console.log('add ani')
-        buttonGreen.classList.add("glow-green")
+    if (e.keyCode === 77) { // m green index:4
+        controllerAnimation("glow-green")
         push(4)
     }
 }
-
-//      PATTERN ANIMATION
-// add event listeners to remove class after animation ends
-buttonBlue.addEventListener("webkitAnimationEnd", () => {
-    console.log('remove anime')
-    buttonBlue.classList.remove("glow-blue")
-})
-buttonRed.addEventListener("webkitAnimationEnd", () => {
-    console.log('remove anime')
-    buttonRed.classList.remove("glow-red")
-})
-buttonYellow.addEventListener("webkitAnimationEnd", () => {
-    console.log('remove anime')
-    buttonYellow.classList.remove("glow-yellow")
-})
-buttonPurple.addEventListener("webkitAnimationEnd", () => {
-    console.log('remove anime')
-    buttonPurple.classList.remove("glow-purple")
-})
-buttonGreen.addEventListener("webkitAnimationEnd", () => {
-    console.log('remove anime')
-    buttonGreen.classList.remove("glow-green")
-})
-
-// Play pattern animation
-const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-
-function playPattern() {
-    let i = 0
-    let button;
-    messageToPlayer("GO!", 300)
-    let play = setInterval(() => {
-        button = document.getElementById(animationIndex[pattern[i]].slice(5))
-        console.log(button)
-        button.classList.remove(animationIndex[pattern[i]])
-        void button.offsetWidth
-        console.log('add ani')
-        buttonGreen.classList.add(animationIndex[pattern[i]])
-        i++
-        if (i >= pattern.length) {
-            clearInterval(play)
-            setTimeout(function () {
-                console.log("controller on")
-                playerDisbled = false //reengauge controller functionality
-            }, 800)
-        }
-    }, 850)
-}
-
-// GAME LOGIC
-//randomly generated array 
-let patternCount = 1
-let pattern = []
-function createPattern() {
-    for (let i = 0; i < patternCount; i++) {
-        pattern.push(Math.floor(Math.random() * 5))
-    }
+// animator for keys
+function controllerAnimation(aniKey) {
+    let button = document.getElementById(aniKey.slice(5))
+    console.log(button)
+    button.classList.remove(aniKey)
+    void button.offsetWidth
+    console.log('add ani')
+    button.classList.add(aniKey)
 }
 
 // Create array from user inputs
@@ -121,6 +60,70 @@ function push(iButton) {
     comparePatterns()
 }
 
+//      PATTERN ANIMATION
+// add event listeners to remove class after animation ends
+// buttonBlue.addEventListener("webkitAnimationEnd", () => {
+//     console.log('remove anime')
+//     buttonBlue.classList.remove("glow-blue")
+// })
+// buttonRed.addEventListener("webkitAnimationEnd", () => {
+//     console.log('remove anime')
+//     buttonRed.classList.remove("glow-red")
+// })
+// buttonYellow.addEventListener("webkitAnimationEnd", () => {
+//     console.log('remove anime')
+//     buttonYellow.classList.remove("glow-yellow")
+// })
+// buttonPurple.addEventListener("webkitAnimationEnd", () => {
+//     console.log('remove anime')
+//     buttonPurple.classList.remove("glow-purple")
+// })
+// buttonGreen.addEventListener("webkitAnimationEnd", () => {
+//     console.log('remove anime')
+//     buttonGreen.classList.remove("glow-green")
+// })
+
+//      SIMON COMPUTER
+//randomly generated array 
+let pattern = []
+function createPattern() {
+    let nextnum = Math.floor(Math.random() * 5)
+    if (nextnum === pattern[pattern.length - 1] || nextnum === pattern[pattern.length - 2]) {
+        console.log('reset!!!!')
+        pattern.push(Math.floor(Math.random() * 5))
+    }
+    else {
+        pattern.push(nextnum)
+    }
+    console.log(pattern)
+}
+
+// Play pattern animation
+const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
+function playPattern(speed = 400) {
+    let i = 0
+    let button;
+    messageToPlayer("SIMON SAYS!", 300)
+    let play = setInterval(() => {
+        button = document.getElementById(animationIndex[pattern[i]].slice(5))
+        console.log(button)
+        button.classList.remove(animationIndex[pattern[i]])
+        void button.offsetWidth
+        console.log('add ani')
+        button.classList.add(animationIndex[pattern[i]])
+        i++
+        if (i >= pattern.length) {
+            clearInterval(play)
+            setTimeout(function () {
+                console.log("controller on")
+                messageToPlayer("GO!", 400)
+                playerDisbled = false //reengauge controller functionality
+            }, 300)
+        }
+    }, speed)
+}
+
+//      GAME LOGIC
 // compare the pattern with the user input
 let check = 0
 function comparePatterns() {
@@ -139,27 +142,19 @@ function comparePatterns() {
         check++
     }
 }
+
 // create win state
 function win() {
-    if (false) { // create a challenge boolean to switch between challenge 
-        pattern = []
-        userArr = []
-        patternCount++
-        messageToPlayer("SUCCESS")
-        roundStart()
-    }
-    else {
-        userArr = []
-        messageToPlayer("SUCCESS")
-        roundStart()
-    }
+    userArr = []
+    messageToPlayer("SUCCESS")
+    roundStart()
 }
 // create lose state
 function lose() {
+
     messageToPlayer("YOU LOSE", 10000)
     pattern = []
     userArr = []
-    patternCount = 1
     playGame.style.cursor = "default"
     playing = false
 }
@@ -175,7 +170,8 @@ function messageToPlayer(message, duration = 1000) {
     }, duration)
 }
 
-//Game loop
+//round inititor and sequencer
+let challenge = true
 function roundStart() {
     //disengauge controller functionality
     console.log('controller off')
@@ -183,11 +179,14 @@ function roundStart() {
     setTimeout(() => {
         console.log("round start")
         createPattern()
-        playPattern() //reengauge controller at end of this funtion
+        if (challenge) {
+            playPattern(250) //reengauge controller at end of this funtion
+        }
+        else { playPattern() }
     }, 500)
 }
 
-//play game button
+//"play game button"/initializer
 let playing = false
 playGame.addEventListener("click", () => {
     if (playing) {
