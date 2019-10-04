@@ -8,10 +8,16 @@
     <title>Document</title>
     <link rel="stylesheet" href="reset.css" type="text/css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+    <script src="https://unpkg.com/tone"></script>
     <script defer src="script.js"></script>
 </head>
 
 <body>
+    <div class="display-container">
+        <p>Score: <span id="score">000000</span></p>
+        <p>Round: <span id="round">0</span></p>
+    </div>
     <div class="result-container">
         <h2 class="result" id="messageBox"></h2>
     </div>

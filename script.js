@@ -7,38 +7,44 @@ const buttonPurple = document.getElementById("purple")
 const buttonGreen = document.getElementById("green")
 const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
+const scoreBox = document.getElementById("score")
+const roundBox = document.getElementById("round")
 
+//      SYNTH
+const synth = new Tone.Synth().toMaster()
 //      USER
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
-let playerDisbled = true
+let disableControl = true
 function controller(e) {
-    if (playerDisbled) {
+    if (disableControl) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        controllerAnimation("glow-blue")
+        controllerAnimation("glow-blue", "C4")
         push(0)
     }
     if (e.keyCode === 74) { // j red index:1
-        controllerAnimation("glow-red")
+        controllerAnimation("glow-red", "G4")
         push(1)
     }
     if (e.keyCode === 67) { // c yellow index:2
-        controllerAnimation("glow-yellow")
+        controllerAnimation("glow-yellow", "B4")
         push(2)
     }
     if (e.keyCode === 32) { // space purple index:3
-        controllerAnimation("glow-purple")
+        controllerAnimation("glow-purple", "E4")
         push(3)
     }
     if (e.keyCode === 77) { // m green index:4
-        controllerAnimation("glow-green")
+        controllerAnimation("glow-green", "D4")
         push(4)
     }
 }
+
 // animator for keys
-function controllerAnimation(aniKey) {
+function controllerAnimation(aniKey, note) {
+    synth.triggerAttackRelease(note, '8n')
     let button = document.getElementById(aniKey.slice(5))
     console.log(button)
     button.classList.remove(aniKey)
@@ -72,11 +78,14 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
+const computerChord = ["E3", "B3", "G#3", "D#4", "F#4"]
 function playPattern(speed = 400) {
     let i = 0
     let button;
     messageToPlayer("SIMON SAYS!", 300)
     let play = setInterval(() => {
+        console.log(computerChord[pattern[i]])
+        synth.triggerAttackRelease(computerChord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
         console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
@@ -89,7 +98,7 @@ function playPattern(speed = 400) {
             setTimeout(function () {
                 console.log("controller on")
                 messageToPlayer("GO!", 400)
-                playerDisbled = false //reengauge controller functionality
+                disableControl = false //reengauge controller functionality
             }, 300)
         }
     }, speed)
@@ -123,15 +132,17 @@ function win() {
 }
 // create lose state
 function lose() {
-
     messageToPlayer("YOU LOSE", 10000)
     pattern = []
     userArr = []
+    score = 0
+    round = 0
     playGame.style.cursor = "default"
     playing = false
+    playGame.style.display = "inline-block"
 }
 
-// create a way to inform the player of game info
+// create a way to inform the player of game que
 function messageToPlayer(message, duration = 1000) {
     messageBox.textContent = message
     console.log(messageBox.textContent)
@@ -142,12 +153,27 @@ function messageToPlayer(message, duration = 1000) {
     }, duration)
 }
 
+//set score and round on display bar
+let score = 0
+let round = 0
+function updateDisplay() {
+    round++
+    roundBox.textContent = round
+    //point system
+    if (round === 1) {
+        score += 1000
+    }
+    score *= round
+    scoreBox.textContent = score
+
+}
+
 //round inititor and sequencer
 let challenge = false
 function roundStart() {
-    //disengauge controller functionality
     console.log('controller off')
-    playerDisbled = true
+    disableControl = true
+    updateDisplay()
     setTimeout(() => {
         console.log("round start")
         createPattern()
@@ -158,7 +184,7 @@ function roundStart() {
     }, 500)
 }
 
-//"play game button"/initializer
+// "play game button" initializer
 let playing = false
 playGame.addEventListener("click", () => {
     if (playing) {
@@ -170,5 +196,6 @@ playGame.addEventListener("click", () => {
         roundStart()
         playGame.style.cursor = "default"
         playing = true
+        playGame.style.display = "none"
     }
 })

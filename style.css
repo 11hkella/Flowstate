@@ -4,7 +4,7 @@ body{
 }
 .game-board{
     max-width: 800px;
-    padding: 50px;
+    padding: 0 0 50px 0;
     margin: 0 auto;
 }
 .game-board .row1{
@@ -25,7 +25,7 @@ body{
     display: flex;
     justify-content: center;
 }
-h2{
+h2, p, h1, h3{
     color: rgb(216, 212, 212);
 }
 .pg-container h2{
@@ -33,18 +33,33 @@ h2{
     font-size: 3.5rem;
     display: inline-block;
     cursor: pointer;
+    min-width: 320px;
+    min-height: 60px;
 }
 .result-container{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    padding: 40px 0 0 0;
+    padding: 5px 0 0 0;
     height: 50px
 }
 .result{
     display: none;
     text-align: center;
     font-size: 1.5rem;
+}
+.display-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 40px 0 0 0;
+    height: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.display-container p{
+    min-width: 100px;
+    font-size: 1.3em;
 }
 
 /* BUTTONS */
