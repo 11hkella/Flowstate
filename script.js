@@ -167,11 +167,11 @@ function updateDisplay() {
 }
 function updateScore(roundEnd = false) {
     if (roundEnd && round) {
-        if (round <= 5) { score += 50 } //round 1-5
-        else if (round <= 10) { score += (round * 10) } // round 6-10
-        else { score += (round * 20) } // round 10-inf
+        if (round <= 5) { score += 500 } //round 1-5
+        else if (round <= 10) { score += (round * 300) } // round 6-10
+        else { score += (round * 1000) } // round 10-inf
     } else if (round) {
-        score += pattern.length
+        score += (pattern.length * 10)
     }
     scoreBox.textContent = score
 }
