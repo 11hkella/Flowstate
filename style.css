@@ -149,19 +149,30 @@ button:active {
         /* animation calls */
 .glow-blue{
     -webkit-animation: bluePulse .7s 1;
+    animation: bluePulse .7s 1;
+
 }
 .glow-red{
      -webkit-animation: redPulse .7s 1;
+     animation: redPulse .7s 1;
 }
 .glow-yellow{
      -webkit-animation: yellowPulse .7s 1;
+     animation: yellowPulse .7s 1;
 }
 .glow-purple{
      -webkit-animation: purplePulse .7s 1;
+     animation: purplePulse .7s 1;
 }
 .glow-green{
      -webkit-animation: greenPulse .7s 1;
+     animation: greenPulse .7s 1;
 }
+.playGame{
+    -webkit-animation: playIdle .7s infinite;
+    animation: playIdle 1.8s infinite;
+}
+
 
         /* Animations details*/
 @keyframes bluePulse{
@@ -192,4 +203,12 @@ to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #b913d68f; color: #
 from {background-color: #44aa09a6; -webkit-box-shadow: 0 0 9px #66e01f80; color: #f8f7f7; }
 8% {background-color: #47b309; -webkit-box-shadow: 0 0 18px #59db0d8a; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #909096e5; }
+}
+
+@keyframes playIdle{
+    from{opacity: 1;}
+    /* 5%{opacity: .9;} */
+    45%{opacity: 0.01; }
+    90%{opacity: .95;}
+    to{opacity: 1;}
 }
