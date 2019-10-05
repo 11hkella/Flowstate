@@ -83,7 +83,7 @@ const computerChord = ["E4", "A3", "C#4", "F#3", "G#3"]
 function playPattern(speed = 450) {
     let i = 0
     let button;
-    messageToPlayer("SIMON SAYS!", 300)
+    messageToPlayer("NOW", 300)
     let play = setInterval(() => {
         console.log(computerChord[pattern[i]])
         synth.triggerAttackRelease(computerChord[pattern[i]], '8n')
