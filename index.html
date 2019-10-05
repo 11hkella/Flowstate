@@ -8,33 +8,43 @@
     <title>Document</title>
     <link rel="stylesheet" href="reset.css" type="text/css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
-    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
-    <script src="https://unpkg.com/tone"></script>
+    <link href="https://fonts.googleapis.com/css?family=Condiment&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+    <script defer src="https://unpkg.com/tone"></script>
     <script defer src="script.js"></script>
 </head>
 
 <body>
-    <div class="display-container">
-        <p>Score: <span id="score">000000</span></p>
-        <p>Round: <span id="round">0</span></p>
-    </div>
-    <div class="result-container">
-        <h2 class="result" id="messageBox"></h2>
-    </div>
-    <div class="game-board">
-        <div class="row1">
-            <button id="blue" class="f">F</button>
-            <button id="red" class="j">J</button>
+    <header>
+        <span class="f">f</span>
+        <div class="titleRight">
+            <h1>lowstate</h1>
+            <div class="display-container">
+                <p>Highscore: <span id="highscore">000000</span></p>
+                <p>Score: <span id="score">000000</span></p>
+                <p>Round: <span id="round">0</span></p>
+            </div>
         </div>
-        <div class="row2">
-            <button id="yellow" class="c">C</button>
-            <button id="purple" class="space">SPACE</button>
-            <button id="green" class="m">M</button>
+    </header>
+    <main>
+        <div class="result-container">
+            <h2 class="result" id="messageBox"></h2>
         </div>
-    </div>
-    <div class="pg-container">
-        <h2 id="playGame">PLAY GAME</h2>
-    </div>
+        <div class="game-board">
+            <div class="row1">
+                <button id="blue" class="f">F</button>
+                <button id="red" class="j">J</button>
+            </div>
+            <div class="row2">
+                <button id="yellow" class="c">C</button>
+                <button id="purple" class="space">SPACE</button>
+                <button id="green" class="m">M</button>
+            </div>
+        </div>
+        <div class="pg-container">
+            <h2 id="playGame">PLAY GAME</h2>
+        </div>
+    </main>
 
 </body>
 

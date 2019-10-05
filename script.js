@@ -9,10 +9,11 @@ const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
 const roundBox = document.getElementById("round")
+const highscoreBox = document.getElementById("highscore")
 
 //      SYNTH
 const synth = new Tone.Synth().toMaster()
-//      USER
+//***********  USER  *************************************************
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
 let disableControl = true
@@ -21,23 +22,23 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        controllerAnimation("glow-blue", "C4")
+        controllerAnimation("glow-blue", "B3")
         push(0)
     }
     if (e.keyCode === 74) { // j red index:1
-        controllerAnimation("glow-red", "G4")
+        controllerAnimation("glow-red", "D4")
         push(1)
     }
     if (e.keyCode === 67) { // c yellow index:2
-        controllerAnimation("glow-yellow", "B4")
+        controllerAnimation("glow-yellow", "F#4")
         push(2)
     }
     if (e.keyCode === 32) { // space purple index:3
-        controllerAnimation("glow-purple", "E4")
+        controllerAnimation("glow-purple", "A4")
         push(3)
     }
     if (e.keyCode === 77) { // m green index:4
-        controllerAnimation("glow-green", "D4")
+        controllerAnimation("glow-green", "C#4")
         push(4)
     }
 }
@@ -61,7 +62,7 @@ function push(iButton) {
     comparePatterns()
 }
 
-//      SIMON COMPUTER
+//****************  SIMON COMPUTER  **********************************
 //randomly generated array 
 let pattern = []
 function createPattern() {
@@ -78,8 +79,8 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-const computerChord = ["E3", "B3", "G#3", "D#4", "F#4"]
-function playPattern(speed = 400) {
+const computerChord = ["A3", "C#4", "E3", "G#4", "B4"]
+function playPattern(speed = 450) {
     let i = 0
     let button;
     messageToPlayer("SIMON SAYS!", 300)
@@ -104,7 +105,7 @@ function playPattern(speed = 400) {
     }, speed)
 }
 
-//      GAME LOGIC
+//***********************  GAME LOGIC  **************************************
 // compare the pattern with the user input
 let check = 0
 function comparePatterns() {
@@ -120,6 +121,7 @@ function comparePatterns() {
     }
     else {
         console.log("correct")
+        updateScore()
         check++
     }
 }
@@ -130,13 +132,15 @@ function win() {
     messageToPlayer("SUCCESS")
     roundStart()
 }
+
 // create lose state
 function lose() {
     messageToPlayer("YOU LOSE", 10000)
     pattern = []
     userArr = []
-    score = 0
+    checkHighscore()
     round = 0
+    score = 0
     playGame.style.cursor = "default"
     playing = false
     playGame.style.display = "inline-block"
@@ -157,19 +161,31 @@ function messageToPlayer(message, duration = 1000) {
 let score = 0
 let round = 0
 function updateDisplay() {
+    updateScore(true)
     round++
     roundBox.textContent = round
-    //point system
-    if (round === 1) {
-        score += 1000
+}
+function updateScore(roundEnd = false) {
+    if (roundEnd && round) {
+        if (round <= 5) { score += 50 } //round 1-5
+        else if (round <= 10) { score += (round * 10) } // round 6-10
+        else { score += (round * 20) } // round 10-inf
+    } else if (round) {
+        score += pattern.length
     }
-    score *= round
     scoreBox.textContent = score
+}
 
+// Check if they got a highscore
+let highscore = 0
+function checkHighscore() {
+    if (score > highscore) {
+        highscoreBox.textContent = score
+        highscore = score
+    }
 }
 
 //round inititor and sequencer
-let challenge = false
 function roundStart() {
     console.log('controller off')
     disableControl = true
@@ -177,10 +193,10 @@ function roundStart() {
     setTimeout(() => {
         console.log("round start")
         createPattern()
-        if (challenge) {
-            playPattern(250) //reengauge controller at end of this funtion
-        }
-        else { playPattern() }
+        //reengauge controller at end of playPattern funtion
+        if (round <= 5) { playPattern() } //round 1-5
+        else if (round <= 10) { playPattern(350) } // round 6-10
+        else { playPattern(270) } // round 10-inf
     }, 500)
 }
 

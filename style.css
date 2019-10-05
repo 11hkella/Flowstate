@@ -1,10 +1,47 @@
+* {
+    color: rgb(216, 212, 212);
+}
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 39px auto 0 auto;
+    max-width: 800px;
+    
+}
+main{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.titleRight{
+    margin: 52px 0 0 5px;
+} 
+header .titleRight h1{
+    font-size: 65px;
+    padding: 11px 0 0 67px;
+    font-family: 'Condiment', cursive;
+    letter-spacing: 52px;
+
+}
+header .f{
+    font-size: 215px;
+    font-family: 'Condiment', cursive;
+    padding: 16px 71px 0 0;
+    position: relative;
+    top: 26px;
+    left: 79px;
+}
 body{
     min-height: 100vh;
-    background-color: rgb(18, 18, 18);
+    background-image: url("blacksand-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: all ease-in-out;
+    background-color: rgb(8, 8, 8);
 }
 .game-board{
-    max-width: 800px;
-    padding: 0 0 50px 0;
+    max-width:800px;
+    padding: 0 0 20px 0;
     margin: 0 auto;
 }
 .game-board .row1{
@@ -26,7 +63,7 @@ body{
     justify-content: center;
 }
 h2, p, h1, h3{
-    color: rgb(216, 212, 212);
+    display: inline-block;
 }
 .pg-container h2{
     text-align: center;
@@ -41,7 +78,7 @@ h2, p, h1, h3{
     justify-content: center;
     align-items: flex-end;
     padding: 5px 0 0 0;
-    height: 50px
+    height: 40px
 }
 .result{
     display: none;
@@ -52,9 +89,8 @@ h2, p, h1, h3{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 40px 0 0 0;
-    height: 40px;
-    max-width: 800px;
+    padding: 20px 0 0 0;
+    max-width: 559px;
     margin: 0 auto;
 }
 .display-container p{
@@ -72,7 +108,7 @@ h2, p, h1, h3{
     margin: 0 30px;
     transition: all 0.2s ease-in-out;
     font-size: 3em;
-    color: #f1f1f169;
+    color: #f1f1f194;
     padding: 1rem 2rem;
     text-decoration: none;
     font-family: sans-serif;
@@ -96,11 +132,11 @@ button:active {
 }
 
         /* color */
-.f{ background-color: #c1ecfa38; }
-.j{ background-color: #ff46253c; }
-.c{ background-color: #ffdd4331; }
-.space{ background-color: #860a9c2d; }
-.m{ background-color: #34860531; }
+main .f{ background-color: #c1ecfa15; }
+.j{ background-color: #ff462511; }
+.c{ background-color: #ffdd4309; }
+.space{ background-color: #860a9c10; }
+.m{ background-color: #3486050a; }
 
         /* animation calls */
 .glow-blue{
@@ -123,29 +159,29 @@ button:active {
 @keyframes bluePulse{
 from {background-color: #9fe2f8f3; -webkit-box-shadow: 0 0 9px #8ce2ffaf; color: #f8f7f7; }
 8% {background-color: #82e0ff; -webkit-box-shadow: 0 0 18px #c6edfabd; color: #fff; }
-to {background-color: #c1ecfa38; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #f1f1f169; }
+to {background-color: #c1ecfa15; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #f1f1f194; }
 }
 
 @keyframes redPulse{
 from {background-color: #ff4625be; -webkit-box-shadow: 0 0 9px #ff7c65a1; color: #f8f7f7; }
 8% {background-color: #ff4625; -webkit-box-shadow: 0 0 18px #ff856fcc; color: #fff; }
-to {background-color: #ff46253c; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f1f1f169; }
+to {background-color: #ff462511; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #f1f1f194; }
 }
 
 @keyframes yellowPulse{
 from {background-color: #ffdd43b4; -webkit-box-shadow: 0 0 9px #ecc72485; color: #f8f7f7; }
 8% {background-color: #ffdd43; -webkit-box-shadow: 0 0 18px #ecc724a9; color: #fff; }
-to {background-color: #ffdd4331; -webkit-box-shadow: 0 0 1px #ecc72473; color: #f1f1f169; }
+to {background-color: #ffdd4309; -webkit-box-shadow: 0 0 1px #ecc72473; color: #f1f1f194; }
 }
 
 @keyframes purplePulse{
 from {background-color: #9c0db6ab; -webkit-box-shadow: 0 0 9px #be0fdda1; color: #f8f7f7; }
 8% {background-color: #be0fdd; -webkit-box-shadow: 0 0 18px #d614f898; color: #fff; }
-to {background-color: #860a9c2d; -webkit-box-shadow: 0 0 1px #b913d68f; color: #f1f1f169; }
+to {background-color: #860a9c10; -webkit-box-shadow: 0 0 1px #b913d68f; color: #f1f1f194; }
 }
 
 @keyframes greenPulse{
 from {background-color: #44aa09a6; -webkit-box-shadow: 0 0 9px #66e01f80; color: #f8f7f7; }
 8% {background-color: #47b309; -webkit-box-shadow: 0 0 18px #59db0d8a; color: #fff; }
-to {background-color: #34860531; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #f1f1f169; }
+to {background-color: #3486050a; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #f1f1f194; }
 }
