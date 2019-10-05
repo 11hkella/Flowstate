@@ -22,7 +22,7 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        controllerAnimation("glow-blue", "B3")
+        controllerAnimation("glow-blue", "A4")
         push(0)
     }
     if (e.keyCode === 74) { // j red index:1
@@ -34,7 +34,7 @@ function controller(e) {
         push(2)
     }
     if (e.keyCode === 32) { // space purple index:3
-        controllerAnimation("glow-purple", "A4")
+        controllerAnimation("glow-purple", "B3")
         push(3)
     }
     if (e.keyCode === 77) { // m green index:4
@@ -79,7 +79,7 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-const computerChord = ["A3", "C#4", "E3", "G#4", "B4"]
+const computerChord = ["E4", "A3", "C#4", "F#3", "G#3"]
 function playPattern(speed = 450) {
     let i = 0
     let button;

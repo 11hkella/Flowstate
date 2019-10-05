@@ -5,16 +5,16 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    margin: 39px auto 0 auto;
+    margin: 0 auto;
     max-width: 800px;
-    
+    padding-top: 10px;
 }
 main{
     max-width: 800px;
     margin: 0 auto;
 }
 .titleRight{
-    margin: 52px 0 0 5px;
+    margin: 52px 0 0 -2px;
 } 
 header .titleRight h1{
     font-size: 65px;
@@ -49,14 +49,14 @@ body{
     justify-content: center;
     align-items: center;
     user-select: none;
-    padding: 20px 0;
+    padding-top: 20px;
 }
 .game-board .row2{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding: 20px 0;
+    align-items: center;
     user-select: none;
+    padding: 10px 0;
 }
 .pg-container{
     display: flex;
@@ -76,8 +76,8 @@ h2, p, h1, h3{
 .result-container{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding: 5px 0 0 0;
+    align-items: flex-start;
+    padding: 0 0 20px 0;
     height: 40px
 }
 .result{
@@ -92,23 +92,28 @@ h2, p, h1, h3{
     padding: 20px 0 0 0;
     max-width: 559px;
     margin: 0 auto;
+    font-family: 'Major Mono Display', monospace;
 }
 .display-container p{
     min-width: 100px;
     font-size: 1.3em;
+}
+.display-container .span{
+    display: block;
 }
 
 /* BUTTONS */
        /* general button styling */
 .game-board button{
     border: 1px solid rgba(20, 20, 20, 0.925);
+    background-color: rgba(24, 24, 24, 0.555);
     border-radius: 99%;
     width: 150px;
     height: 150px;
     margin: 0 30px;
     transition: all 0.2s ease-in-out;
     font-size: 3em;
-    color: #f1f1f194;
+    color: #202020f8;
     padding: 1rem 2rem;
     text-decoration: none;
     font-family: sans-serif;
@@ -132,11 +137,11 @@ button:active {
 }
 
         /* color */
-main .f{ background-color: #c1ecfa15; }
+/* main .f{ background-color: #c1ecfa15; }
 .j{ background-color: #ff462511; }
 .c{ background-color: #ffdd4309; }
-.space{ background-color: #860a9c10; }
-.m{ background-color: #3486050a; }
+.space{ background-color: #860a9c10;}
+.m{ background-color: #3486050a; } */
 
         /* animation calls */
 .glow-blue{
