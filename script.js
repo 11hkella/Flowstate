@@ -5,6 +5,8 @@ console.log("here here!")
 // const buttonYellow = document.getElementById("yellow")
 // const buttonPurple = document.getElementById("purple")
 // const buttonGreen = document.getElementById("green")
+const gameboard = document.getElementsByClassName("game-board")[0]
+const buttons = gameboard.querySelectorAll("button")
 const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
@@ -47,19 +49,21 @@ function controller(e) {
 function controllerAnimation(aniKey, note) {
     synth.triggerAttackRelease(chord[note], '8n')
     let button = document.getElementById(aniKey.slice(5))
-    console.log(button)
+    // console.log(button)
     button.classList.remove(aniKey)
     void button.offsetWidth
-    console.log('add ani')
+    // console.log('add ani')
     button.classList.add(aniKey)
 }
 
 // Create array from user inputs
 let userArr = []
 function push(iButton) {
-    userArr.push(iButton)
-    console.log(userArr)
-    comparePatterns()
+    if (playing) {
+        userArr.push(iButton)
+        console.log(`player pushed ${iButton}`)
+        comparePatterns()
+    }
 }
 
 //****************  SIMON COMPUTER  **********************************
@@ -85,13 +89,12 @@ function playPattern(speed = 450) {
     let button;
     messageToPlayer("NOW", 300)
     let play = setInterval(() => {
-        console.log(chord[pattern[i]])
+        // console.log(chord[pattern[i]])
         synth.triggerAttackRelease(chord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
-        console.log(button)
+        // console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
         void button.offsetWidth
-        console.log('add ani')
         button.classList.add(animationIndex[pattern[i]])
         i++
         if (i >= pattern.length) {
@@ -110,7 +113,7 @@ function playPattern(speed = 450) {
 let check = 0
 function comparePatterns() {
     if (userArr[check] !== pattern[check]) {
-        console.log("You Lose")
+        console.log("Not equal")
         check = 0
         lose()
     }
@@ -135,21 +138,22 @@ function win() {
 
 // create lose state
 function lose() {
-    messageToPlayer("YOU LOSE", 10000)
+    playing = false
+    playGame.style.cursor = "pointer"
+    playGame.style.display = "inline-block"
     pattern = []
     userArr = []
-    checkHighscore()
     round = 0
     score = 0
-    playGame.style.cursor = "pointer"
-    playing = false
-    playGame.style.display = "inline-block"
+    startup()
+    checkHighscore()
+    messageToPlayer("YOU LOSE", 5000)
 }
 
 // create a way to inform the player of game que
 function messageToPlayer(message, duration = 1000) {
     messageBox.textContent = message
-    console.log(messageBox.textContent)
+    console.log("display message")
     messageBox.style.display = "inline-block"
     setTimeout(() => {
         console.log(message)
@@ -208,16 +212,29 @@ playGame.addEventListener("click", () => {
         return
     }
     else {
-        messageToPlayer("READY?")
-        roundStart()
+        disableControl = true
+        startup()
         playGame.style.cursor = "default"
-        playing = true
         playGame.style.display = "none"
+        setTimeout(() => {
+            messageToPlayer("READY?")
+            roundStart()
+            playing = true
+        }, 700)
     }
 })
+
+// "Play Game button" hover animation cancel
 playGame.addEventListener("mouseenter", () => {
     playGame.classList.remove("playGame")
 })
 playGame.addEventListener("mouseout", () => {
     playGame.classList.add("playGame")
 })
+
+// button border glow startup animation
+function startup() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle("start-up")
+    }
+}
