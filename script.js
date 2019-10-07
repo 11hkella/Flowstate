@@ -1,10 +1,5 @@
 console.log("here here!")
 //      POINTERS
-// const buttonBlue = document.getElementById("blue")
-// const buttonRed = document.getElementById("red")
-// const buttonYellow = document.getElementById("yellow")
-// const buttonPurple = document.getElementById("purple")
-// const buttonGreen = document.getElementById("green")
 const gameboard = document.getElementsByClassName("game-board")[0]
 const buttons = gameboard.querySelectorAll("button")
 const playGame = document.getElementById("playGame")
@@ -12,11 +7,15 @@ const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
 const roundBox = document.getElementById("round")
 const highscoreBox = document.getElementById("highscore")
-const audio = document.getElementById("bgAudio")
+const displayItems = document.querySelectorAll("#display-container > p")
 
 //      SYNTH
 const compSynth = new Tone.DuoSynth().toMaster()
 const userSynth = new Tone.PolySynth().toMaster()
+
+//      AUDIO FILES
+const powerUp = new Audio("power-up.wav")
+const explosion = new Audio("explosion.wav")
 //***********  USER  *************************************************
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
@@ -85,8 +84,8 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-// const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
-const chord = ["C#4", "A#3", "G#4", "F#3", "F4"]
+const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
+// const chord = ["C#4", "A#3", "G#4", "F#3", "F4"]
 function playPattern(speed = 450) {
     let i = 0
     let button;
@@ -117,6 +116,8 @@ let check = 0
 function comparePatterns() {
     if (userArr[check] !== pattern[check]) {
         console.log("Not equal")
+        explosion.play()
+        startup()
         check = 0
         lose()
     }
@@ -149,7 +150,7 @@ function lose() {
     round = 0
     checkHighscore()
     score = 0
-    startup()
+    fail()
     messageToPlayer("YOU LOSE", 5000)
 }
 
@@ -217,6 +218,7 @@ playGame.addEventListener("click", () => {
         return
     }
     else {
+        powerUp.play()
         disableControl = true
         startup()
         playGame.style.cursor = "default"
@@ -242,7 +244,31 @@ function startup() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.toggle("start-up")
     }
+    for (let i = 0; i < displayItems.length; i++) {
+        displayItems[i].classList.toggle("start-up-display")
+    }
 }
+//button fail animation when user inputs wrong value
+function fail() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle("fail")
+    }
+    for (let i = 0; i < displayItems.length; i++) {
+        displayItems[i].classList.toggle("fail")
+    }
+    setTimeout(() => {
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.toggle("fail")
+        }
+        for (let i = 0; i < displayItems.length; i++) {
+            displayItems[i].classList.toggle("fail")
+        }
+    }, 300)
+
+}
+
+// fade in page
+document.body.classList.remove("fade")
 
 // play background noise
 // const spaceWind = new Audio("space-wind.wav")
