@@ -253,9 +253,15 @@ function fail() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.toggle("fail")
     }
+    for (let i = 0; i < displayItems.length; i++) {
+        displayItems[i].classList.toggle("fail")
+    }
     setTimeout(() => {
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].classList.toggle("fail")
+        }
+        for (let i = 0; i < displayItems.length; i++) {
+            displayItems[i].classList.toggle("fail")
         }
     }, 300)
 
