@@ -61,6 +61,7 @@ body{
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    min-height: 60px
 }
 h2, p, h1, h3{
     display: inline-block;
