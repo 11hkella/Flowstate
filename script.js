@@ -147,9 +147,9 @@ function lose() {
     pattern = []
     userArr = []
     round = 0
+    checkHighscore()
     score = 0
     startup()
-    checkHighscore()
     messageToPlayer("YOU LOSE", 5000)
 }
 
@@ -184,12 +184,14 @@ function updateScore(roundEnd = false) {
 }
 
 // Check if they got a highscore
-let highscore = 0
+let highscore = localStorage.getItem("highscore") || 0
+checkHighscore()
 function checkHighscore() {
     if (score > highscore) {
-        highscoreBox.textContent = score
         highscore = score
+        localStorage.setItem("highscore", highscore)
     }
+    highscoreBox.textContent = highscore
 }
 //**********************************  INITIALIZERS ******************************/
 //round inititor and sequencer
