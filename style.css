@@ -33,11 +33,13 @@ header .f{
 }
 body{
     min-height: 100vh;
+    transition: 1.4s opacity;
     background-image: url("blacksand-bg.jpg");
     background-position: center;
+    opacity: 1;
     background-size: cover;
-    transition: all .2s ease-in-out;
     background-color: rgb(8, 8, 8);
+    
 }
 .game-board{
     max-width:800px;
@@ -183,6 +185,10 @@ button:active {
 .fail{
     border:3px solid rgba(238, 6, 6, 0.788) !important;
     -webkit-box-shadow: 0 0 10px #f10e0ea4;
+}
+.fade{
+    opacity: 0;
+    transition: none;
 }
 
 

@@ -267,6 +267,9 @@ function fail() {
 
 }
 
+// fade in page
+document.body.classList.remove("fade")
+
 // play background noise
 // const spaceWind = new Audio("space-wind.wav")
 // spaceWind.volume = 0.7
