@@ -215,4 +215,9 @@ playGame.addEventListener("click", () => {
         playGame.style.display = "none"
     }
 })
-
+playGame.addEventListener("mouseenter", () => {
+    playGame.classList.remove("playGame")
+})
+playGame.addEventListener("mouseout", () => {
+    playGame.classList.add("playGame")
+})
