@@ -1,10 +1,10 @@
 console.log("here here!")
 //      POINTERS
-const buttonBlue = document.getElementById("blue")
-const buttonRed = document.getElementById("red")
-const buttonYellow = document.getElementById("yellow")
-const buttonPurple = document.getElementById("purple")
-const buttonGreen = document.getElementById("green")
+// const buttonBlue = document.getElementById("blue")
+// const buttonRed = document.getElementById("red")
+// const buttonYellow = document.getElementById("yellow")
+// const buttonPurple = document.getElementById("purple")
+// const buttonGreen = document.getElementById("green")
 const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
@@ -22,30 +22,30 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        controllerAnimation("glow-blue", "A4")
+        controllerAnimation("glow-blue", 0)
         push(0)
     }
     if (e.keyCode === 74) { // j red index:1
-        controllerAnimation("glow-red", "D4")
+        controllerAnimation("glow-red", 1)
         push(1)
     }
     if (e.keyCode === 67) { // c yellow index:2
-        controllerAnimation("glow-yellow", "F#4")
+        controllerAnimation("glow-yellow", 2)
         push(2)
     }
     if (e.keyCode === 32) { // space purple index:3
-        controllerAnimation("glow-purple", "B3")
+        controllerAnimation("glow-purple", 3)
         push(3)
     }
     if (e.keyCode === 77) { // m green index:4
-        controllerAnimation("glow-green", "C#4")
+        controllerAnimation("glow-green", 4)
         push(4)
     }
 }
 
 // animator for keys
 function controllerAnimation(aniKey, note) {
-    synth.triggerAttackRelease(note, '8n')
+    synth.triggerAttackRelease(chord[note], '8n')
     let button = document.getElementById(aniKey.slice(5))
     console.log(button)
     button.classList.remove(aniKey)
@@ -79,14 +79,14 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-const computerChord = ["E4", "A3", "C#4", "F#3", "G#3"]
+const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
 function playPattern(speed = 450) {
     let i = 0
     let button;
     messageToPlayer("NOW", 300)
     let play = setInterval(() => {
-        console.log(computerChord[pattern[i]])
-        synth.triggerAttackRelease(computerChord[pattern[i]], '8n')
+        console.log(chord[pattern[i]])
+        synth.triggerAttackRelease(chord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
         console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
