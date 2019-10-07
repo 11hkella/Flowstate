@@ -12,9 +12,11 @@ const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
 const roundBox = document.getElementById("round")
 const highscoreBox = document.getElementById("highscore")
+const audio = document.getElementById("bgAudio")
 
 //      SYNTH
-const synth = new Tone.Synth().toMaster()
+const compSynth = new Tone.DuoSynth().toMaster()
+const userSynth = new Tone.PolySynth().toMaster()
 //***********  USER  *************************************************
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
@@ -47,7 +49,7 @@ function controller(e) {
 
 // animator for keys
 function controllerAnimation(aniKey, note) {
-    synth.triggerAttackRelease(chord[note], '8n')
+    userSynth.triggerAttackRelease(chord[note], '8n')
     let button = document.getElementById(aniKey.slice(5))
     // console.log(button)
     button.classList.remove(aniKey)
@@ -83,14 +85,15 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
+// const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
+const chord = ["C#4", "A#3", "G#4", "F#3", "F4"]
 function playPattern(speed = 450) {
     let i = 0
     let button;
     messageToPlayer("NOW", 300)
     let play = setInterval(() => {
         // console.log(chord[pattern[i]])
-        synth.triggerAttackRelease(chord[pattern[i]], '8n')
+        compSynth.triggerAttackRelease(chord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
         // console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
@@ -238,3 +241,9 @@ function startup() {
         buttons[i].classList.toggle("start-up")
     }
 }
+
+// play background noise
+// const spaceWind = new Audio("space-wind.wav")
+// spaceWind.volume = 0.7
+// spaceWind.loop = true
+// spaceWind.play()
