@@ -141,7 +141,7 @@ function lose() {
     checkHighscore()
     round = 0
     score = 0
-    playGame.style.cursor = "default"
+    playGame.style.cursor = "pointer"
     playing = false
     playGame.style.display = "inline-block"
 }
@@ -184,7 +184,7 @@ function checkHighscore() {
         highscore = score
     }
 }
-
+//**********************************  INITIALIZERS ******************************/
 //round inititor and sequencer
 function roundStart() {
     console.log('controller off')
@@ -214,4 +214,10 @@ playGame.addEventListener("click", () => {
         playing = true
         playGame.style.display = "none"
     }
+})
+playGame.addEventListener("mouseenter", () => {
+    playGame.classList.remove("playGame")
+})
+playGame.addEventListener("mouseout", () => {
+    playGame.classList.add("playGame")
 })
