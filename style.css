@@ -98,6 +98,7 @@ h2, p, h1, h3{
 .display-container p{
     min-width: 100px;
     font-size: 1.3em;
+    transition: all .3s ease-in-out;
 }
 .display-container .span{
     display: block;
@@ -113,7 +114,7 @@ h2, p, h1, h3{
     width: 150px;
     height: 150px;
     margin: 0 30px;
-    transition: all 0.6s ease-in-out;
+    transition: all 0.3s ease-in-out;
     font-size: 3em;
     color: #909096e5;
     padding: 1rem 2rem;
@@ -175,6 +176,13 @@ button:active {
 .start-up{
     border:3px solid rgba(238, 237, 237, 0.89) !important;
     -webkit-box-shadow: 0 0 4px #ffffffaf;
+}
+.start-up-display{
+    color: #06e011e8 !important;
+}
+.fail{
+    border:3px solid rgba(238, 6, 6, 0.788) !important;
+    -webkit-box-shadow: 0 0 10px #f10e0ea4;
 }
 
 
