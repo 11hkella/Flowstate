@@ -1,18 +1,22 @@
 console.log("here here!")
 //      POINTERS
-const buttonBlue = document.getElementById("blue")
-const buttonRed = document.getElementById("red")
-const buttonYellow = document.getElementById("yellow")
-const buttonPurple = document.getElementById("purple")
-const buttonGreen = document.getElementById("green")
+// const buttonBlue = document.getElementById("blue")
+// const buttonRed = document.getElementById("red")
+// const buttonYellow = document.getElementById("yellow")
+// const buttonPurple = document.getElementById("purple")
+// const buttonGreen = document.getElementById("green")
+const gameboard = document.getElementsByClassName("game-board")[0]
+const buttons = gameboard.querySelectorAll("button")
 const playGame = document.getElementById("playGame")
 const messageBox = document.getElementById("messageBox")
 const scoreBox = document.getElementById("score")
 const roundBox = document.getElementById("round")
 const highscoreBox = document.getElementById("highscore")
+const audio = document.getElementById("bgAudio")
 
 //      SYNTH
-const synth = new Tone.Synth().toMaster()
+const compSynth = new Tone.DuoSynth().toMaster()
+const userSynth = new Tone.PolySynth().toMaster()
 //***********  USER  *************************************************
 //      All buttons with keyCode controller
 document.querySelector("body").addEventListener("keydown", controller)
@@ -22,44 +26,46 @@ function controller(e) {
         return
     }
     if (e.keyCode === 70) { //f blue index:0
-        controllerAnimation("glow-blue", "A4")
+        controllerAnimation("glow-blue", 0)
         push(0)
     }
     if (e.keyCode === 74) { // j red index:1
-        controllerAnimation("glow-red", "D4")
+        controllerAnimation("glow-red", 1)
         push(1)
     }
     if (e.keyCode === 67) { // c yellow index:2
-        controllerAnimation("glow-yellow", "F#4")
+        controllerAnimation("glow-yellow", 2)
         push(2)
     }
     if (e.keyCode === 32) { // space purple index:3
-        controllerAnimation("glow-purple", "B3")
+        controllerAnimation("glow-purple", 3)
         push(3)
     }
     if (e.keyCode === 77) { // m green index:4
-        controllerAnimation("glow-green", "C#4")
+        controllerAnimation("glow-green", 4)
         push(4)
     }
 }
 
 // animator for keys
 function controllerAnimation(aniKey, note) {
-    synth.triggerAttackRelease(note, '8n')
+    userSynth.triggerAttackRelease(chord[note], '8n')
     let button = document.getElementById(aniKey.slice(5))
-    console.log(button)
+    // console.log(button)
     button.classList.remove(aniKey)
     void button.offsetWidth
-    console.log('add ani')
+    // console.log('add ani')
     button.classList.add(aniKey)
 }
 
 // Create array from user inputs
 let userArr = []
 function push(iButton) {
-    userArr.push(iButton)
-    console.log(userArr)
-    comparePatterns()
+    if (playing) {
+        userArr.push(iButton)
+        console.log(`player pushed ${iButton}`)
+        comparePatterns()
+    }
 }
 
 //****************  SIMON COMPUTER  **********************************
@@ -79,19 +85,19 @@ function createPattern() {
 
 // Play pattern animation
 const animationIndex = ["glow-blue", "glow-red", "glow-yellow", "glow-purple", "glow-green"]
-const computerChord = ["E4", "A3", "C#4", "F#3", "G#3"]
+// const chord = ["E4", "A3", "C#4", "F#3", "G#3"]
+const chord = ["C#4", "A#3", "G#4", "F#3", "F4"]
 function playPattern(speed = 450) {
     let i = 0
     let button;
     messageToPlayer("NOW", 300)
     let play = setInterval(() => {
-        console.log(computerChord[pattern[i]])
-        synth.triggerAttackRelease(computerChord[pattern[i]], '8n')
+        // console.log(chord[pattern[i]])
+        compSynth.triggerAttackRelease(chord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
-        console.log(button)
+        // console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
         void button.offsetWidth
-        console.log('add ani')
         button.classList.add(animationIndex[pattern[i]])
         i++
         if (i >= pattern.length) {
@@ -110,7 +116,7 @@ function playPattern(speed = 450) {
 let check = 0
 function comparePatterns() {
     if (userArr[check] !== pattern[check]) {
-        console.log("You Lose")
+        console.log("Not equal")
         check = 0
         lose()
     }
@@ -135,21 +141,22 @@ function win() {
 
 // create lose state
 function lose() {
-    messageToPlayer("YOU LOSE", 10000)
+    playing = false
+    playGame.style.cursor = "pointer"
+    playGame.style.display = "inline-block"
     pattern = []
     userArr = []
-    checkHighscore()
     round = 0
+    checkHighscore()
     score = 0
-    playGame.style.cursor = "pointer"
-    playing = false
-    playGame.style.display = "inline-block"
+    startup()
+    messageToPlayer("YOU LOSE", 5000)
 }
 
 // create a way to inform the player of game que
 function messageToPlayer(message, duration = 1000) {
     messageBox.textContent = message
-    console.log(messageBox.textContent)
+    console.log("display message")
     messageBox.style.display = "inline-block"
     setTimeout(() => {
         console.log(message)
@@ -177,12 +184,14 @@ function updateScore(roundEnd = false) {
 }
 
 // Check if they got a highscore
-let highscore = 0
+let highscore = localStorage.getItem("highscore") || 0
+checkHighscore()
 function checkHighscore() {
     if (score > highscore) {
-        highscoreBox.textContent = score
         highscore = score
+        localStorage.setItem("highscore", highscore)
     }
+    highscoreBox.textContent = highscore
 }
 //**********************************  INITIALIZERS ******************************/
 //round inititor and sequencer
@@ -208,16 +217,35 @@ playGame.addEventListener("click", () => {
         return
     }
     else {
-        messageToPlayer("READY?")
-        roundStart()
+        disableControl = true
+        startup()
         playGame.style.cursor = "default"
-        playing = true
         playGame.style.display = "none"
+        setTimeout(() => {
+            messageToPlayer("READY?")
+            roundStart()
+            playing = true
+        }, 700)
     }
 })
+
+// "Play Game button" hover animation cancel
 playGame.addEventListener("mouseenter", () => {
     playGame.classList.remove("playGame")
 })
 playGame.addEventListener("mouseout", () => {
     playGame.classList.add("playGame")
 })
+
+// button border glow startup animation
+function startup() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle("start-up")
+    }
+}
+
+// play background noise
+// const spaceWind = new Audio("space-wind.wav")
+// spaceWind.volume = 0.7
+// spaceWind.loop = true
+// spaceWind.play()
