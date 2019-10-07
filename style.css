@@ -194,38 +194,37 @@ button:active {
 
         /* Animations details*/
 @keyframes bluePulse{
-from {background-color: #9fe2f8f3; -webkit-box-shadow: 0 0 14px #8ce2ffaf; color: #f8f7f7; }
-8% {background-color: #82e0ff; -webkit-box-shadow: 0 0 24px #c6edfabd; color: #fff; }
+from {background-color: #3498DBf3; -webkit-box-shadow: 0 0 14px #8ce2ffaf; color: #f8f7f7; }
+8% {background-color: #3498DB; -webkit-box-shadow: 0 0 24px #c6edfabd; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #b6e9faa8; color: #909096e5; }
 }
 
 @keyframes redPulse{
-from {background-color: #ff4625be; -webkit-box-shadow: 0 0 14px #ff7c65a1; color: #f8f7f7; }
-8% {background-color: #ff4625; -webkit-box-shadow: 0 0 24px #ff856fcc; color: #fff; }
+from {background-color: #df5748be; -webkit-box-shadow: 0 0 14px #ff7c65a1; color: #f8f7f7; }
+8% {background-color: #df5748; -webkit-box-shadow: 0 0 24px #ff856fcc; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #fa9d8da1; color: #909096e5; }
 }
 
 @keyframes yellowPulse{
-from {background-color: #ffdd43b4; -webkit-box-shadow: 0 0 14px #ecc72485; color: #f8f7f7; }
-8% {background-color: #ffdd43; -webkit-box-shadow: 0 0 24px #ecc724a9; color: #fff; }
+from {background-color: #ecc24cb4; -webkit-box-shadow: 0 0 14px #ecc72485; color: #f8f7f7; }
+8% {background-color: #ecc24c; -webkit-box-shadow: 0 0 24px #ecc724a9; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #ecc72473; color: #909096e5; }
 }
 
 @keyframes purplePulse{
-from {background-color: #9c0db6ab; -webkit-box-shadow: 0 0 14px #be0fdda1; color: #f8f7f7; }
-8% {background-color: #be0fdd; -webkit-box-shadow: 0 0 24px #d614f898; color: #fff; }
+from {background-color: #cc58faab; -webkit-box-shadow: 0 0 14px #be0fdda1; color: #f8f7f7; }
+8% {background-color: #cc58fa; -webkit-box-shadow: 0 0 24px #d614f898; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #b913d68f; color: #909096e5; }
 }
 
 @keyframes greenPulse{
-from {background-color: #44aa09a6; -webkit-box-shadow: 0 0 14px #66e01f80; color: #f8f7f7; }
-8% {background-color: #47b309; -webkit-box-shadow: 0 0 24px #59db0d8a; color: #fff; }
+from {background-color: #06e011a6; -webkit-box-shadow: 0 0 14px #66e01f80; color: #f8f7f7; }
+8% {background-color: #06e011; -webkit-box-shadow: 0 0 24px #59db0d8a; color: #fff; }
 to {background-color: #07070700; -webkit-box-shadow: 0 0 1px #5fdd1657; color: #909096e5; }
 }
 
 @keyframes playIdle{
     from{opacity: 1;}
-    /* 5%{opacity: .9;} */
     45%{opacity: 0.01; }
     90%{opacity: .95;}
     to{opacity: 1;}
