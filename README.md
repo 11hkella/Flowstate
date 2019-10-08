@@ -12,7 +12,7 @@
 8. As a round ends and the "fail" animation plays, the "Play Game" button reappears and goes through a slow blinking animation to promote multiple playthroughs.
 
 # REQUIRMENTS
-1. Game must be played in through the browser Chrome.
+1. Game optimized in Chrome browser
 
 # PROJECT BOARD
 [GitHub Enterprise-Projects](https://git.generalassemb.ly/11hkella/project1/projects)
