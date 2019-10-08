@@ -21,4 +21,4 @@
 ![Wireframe](/wireframe.jpg)
 
 # DEPLOYED PAGE
-[flowstate](silly-haibt-f3365c.netlify.com)
+[flowstate](https://silly-haibt-f3365c.netlify.com)
