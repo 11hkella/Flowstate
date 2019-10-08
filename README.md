@@ -11,9 +11,14 @@
 7. Messages to the player are strategically placed in the center of the game board. These messages inform the player when to listen to the pattern and when to repeat it. It also helps the player adapt to the pace of gameplay.
 8. As a round ends and the "fail" animation plays, the "Play Game" button reappears and goes through a slow blinking animation to promote multiple playthroughs.
 
+# REQUIRMENTS
+1. Game must be played in through the browser Chrome.
 
 # PROJECT BOARD
-[git hub enterprise](https://git.generalassemb.ly/11hkella/project1/projects)
+[GitHub Enterprise-Projects](https://git.generalassemb.ly/11hkella/project1/projects)
 
 # WIREFRAME
 ![Wireframe](/wireframe.jpg)
+
+# DEPLOYED PAGE
+[flowstate](silly-haibt-f3365c.netlify.com)
