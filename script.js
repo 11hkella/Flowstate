@@ -1,4 +1,4 @@
-console.log("here here!")
+//console.log("here here!")
 //      POINTERS
 const gameboard = document.getElementsByClassName("game-board")[0]
 const buttons = gameboard.querySelectorAll("button")
@@ -50,10 +50,10 @@ function controller(e) {
 function controllerAnimation(aniKey, note) {
     userSynth.triggerAttackRelease(chord[note], '8n')
     let button = document.getElementById(aniKey.slice(5))
-    // console.log(button)
+    //console.log(button)
     button.classList.remove(aniKey)
     void button.offsetWidth
-    // console.log('add ani')
+    //console.log('add ani')
     button.classList.add(aniKey)
 }
 
@@ -62,7 +62,7 @@ let userArr = []
 function push(iButton) {
     if (playing) {
         userArr.push(iButton)
-        console.log(`player pushed ${iButton}`)
+        //console.log(`player pushed ${iButton}`)
         comparePatterns()
     }
 }
@@ -73,13 +73,13 @@ let pattern = []
 function createPattern() {
     let nextnum = Math.floor(Math.random() * 5)
     if (nextnum === pattern[pattern.length - 1] || nextnum === pattern[pattern.length - 2]) {
-        console.log('reset!!!!')
+        //console.log('reset!!!!')
         pattern.push(Math.floor(Math.random() * 5))
     }
     else {
         pattern.push(nextnum)
     }
-    console.log(pattern)
+    //console.log(pattern)
 }
 
 // Play pattern animation
@@ -91,10 +91,10 @@ function playPattern(speed = 450) {
     let button;
     messageToPlayer("NOW", 300)
     let play = setInterval(() => {
-        // console.log(chord[pattern[i]])
+        // //console.log(chord[pattern[i]])
         compSynth.triggerAttackRelease(chord[pattern[i]], '8n')
         button = document.getElementById(animationIndex[pattern[i]].slice(5))
-        // console.log(button)
+        // //console.log(button)
         button.classList.remove(animationIndex[pattern[i]])
         void button.offsetWidth
         button.classList.add(animationIndex[pattern[i]])
@@ -102,7 +102,7 @@ function playPattern(speed = 450) {
         if (i >= pattern.length) {
             clearInterval(play)
             setTimeout(function () {
-                console.log("controller on")
+                //console.log("controller on")
                 messageToPlayer("GO!", 400)
                 disableControl = false //reengauge controller functionality
             }, 300)
@@ -115,19 +115,19 @@ function playPattern(speed = 450) {
 let check = 0
 function comparePatterns() {
     if (userArr[check] !== pattern[check]) {
-        console.log("Not equal")
+        //console.log("Not equal")
         explosion.play()
         startup()
         check = 0
         lose()
     }
     else if (userArr.length === pattern.length) {
-        console.log("You Win!... this round")
+        //console.log("You Win!... this round")
         check = 0
         win()
     }
     else {
-        console.log("correct")
+        //console.log("correct")
         updateScore()
         check++
     }
@@ -157,10 +157,10 @@ function lose() {
 // create a way to inform the player of game que
 function messageToPlayer(message, duration = 1000) {
     messageBox.textContent = message
-    console.log("display message")
+    //console.log("display message")
     messageBox.style.display = "inline-block"
     setTimeout(() => {
-        console.log(message)
+        //console.log(message)
         messageBox.style.display = "none"
     }, duration)
 }
@@ -197,11 +197,11 @@ function checkHighscore() {
 //**********************************  INITIALIZERS ******************************/
 //round inititor and sequencer
 function roundStart() {
-    console.log('controller off')
+    //console.log('controller off')
     disableControl = true
     updateDisplay()
     setTimeout(() => {
-        console.log("round start")
+        //console.log("round start")
         createPattern()
         //reengauge controller at end of playPattern funtion
         if (round <= 5) { playPattern() } //round 1-5
@@ -214,7 +214,7 @@ function roundStart() {
 let playing = false
 playGame.addEventListener("click", () => {
     if (playing) {
-        console.log("already playing")
+        //console.log("already playing")
         return
     }
     else {
